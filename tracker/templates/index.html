@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+  {% block content %}
+  <h1>Google Books API</h1>
+  Search: <input type="text" id="book_title"> <button type="button" id="search_title">Submit</button>
+  <div class="books">
+  </div>
+  <hr>
+
+<div class="content">
+
+<div class="clearfix">
+
+</div>
+</div>
+{% autoescape on %}
+  <script type='text/template' id='bookTemplate'>
+    <div class="record">
+      <a href="https://books.google.com/books?id=<%= google_id_i %>" target="_blank"><img src="<%= image_i %>"></a>
+      <div class='caption'>
+        <%= title_i %> <%= authors_i %>
+        <p><form class="" action="/" method="post">
+          {% csrf_token %}
+          <input id="id_title" maxlength="200" name="title" type="text" value="<%= title_i %>" hidden />
+          <input id="id_author" maxlength="200" name="author" type="text" value="<%= authors_i %>" hidden />
+          <input id="id_image" maxlength="200" name="image" type="text" value="<%= image_i %>" hidden />
+          <input id="id_google_id" maxlength="200" name="google_id" type="text" value="<%= google_id_i %>" hidden />
+
+          <label for="id_read"><em>Read?</em></label>
+          <input id="id_read" name="read" type="checkbox" />
+          <input type="submit" name="submit" value="Add New Book">
+        </form>
+
+
+      </div>
+    </div>
+</script>
+{% endautoescape %}
+
+  {% endblock %}

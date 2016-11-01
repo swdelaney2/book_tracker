@@ -1,0 +1,67 @@
+html {
+  background: #FCFBE3;
+}
+
+.container {
+  width: 60%;
+  border: 1px solid black;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1em;
+}
+
+input {
+  width: 70%;
+  margin-bottom: 2em;
+}
+
+.record {
+  margin-top: 2em;
+  height: 210px;
+  position: relative;
+}
+
+.record:hover {
+  border: 1px black solid;
+}
+
+.record:nth-child(odd) {
+  background: #ffebcd;
+}
+
+.record:nth-child(even) {
+  background: #e6e6fa;
+}
+
+.record img {
+  position: absolute;
+   top: 50%;
+   transform: translate(5%, -50%);
+}
+
+.caption {
+  position: absolute;
+   top: 50%;
+   transform: translate(50%, -50%);
+   width: 300px;
+}
+
+.clearfix {
+  clear: both;
+}
+
+.mark {
+  border: 0px;
+  padding: 1em;
+  color: white;
+  font-weight: bold;
+  box-shadow: 10px 10px 5px #888888;
+}
+
+.unread {
+  background: red;
+}
+
+.read {
+  background: green;
+}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+  {% block content %}
+  <ul>
+  {% for book in books %}
+  <div class="record">
+    <a href="https://books.google.com/books?id={{book.google_id}}" target="_blank"><img src="{{book.image}}"></a>
+    <div class='caption'>
+      {{book.title}}
+      <br><em>{{book.author}}</em>
+      {% if book.read == True %}
+      <p><form action="/{{book.id}}/change_read_status/False">
+        <input type="submit" value="Mark unread?" class="mark unread" />
+      </form>
+      {% else %}
+      <p><form action="/{{book.id}}/change_read_status/True">
+        <input type="submit" value="Mark read?" class="mark read" />
+      </form>
+      {% endif %}
+      <br><a href="http://encore.skokielibrary.info/iii/encore/search/C__St%3A%28{{book.title|cut:'?'}}%29%20a%3A%28{{book.author}}%29__Orightresult__U?lang=eng&nbsp;suite=beta" target="_blank">Search in the catalog</a>
+    </div>
+  </div>
+  {% endfor %}
+</ul>
+  <div class="pagination">
+      <span class="step-links">
+          {% if books.has_previous %}
+              <a href="?page={{ books.previous_page_number }}">previous</a>
+          {% endif %}
+
+          <span class="current">
+              Page {{ books.number }} of {{ books.paginator.num_pages }}
+          </span>
+
+          {% if books.has_next %}
+              <a href="?page={{ books.next_page_number }}">next</a>
+          {% endif %}
+      </span>
+  </div>
+
+
+  {% endblock %}

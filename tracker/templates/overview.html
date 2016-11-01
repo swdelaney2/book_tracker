@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+  {% block content %}
+  <h1>Books You've Read</h1>
+You've read {{read_books|length}} book{% if read_books|length > 1 %}s{%endif%}.
+  {% for inc in read_books %}
+
+    <div class="record">
+      <a href="https://books.google.com/books?id={{inc.google_id}}" target="_blank"><img src="{{inc.image}}"></a>
+      <div class='caption'>
+        {{inc.title}}
+        <br><em>{{inc.author}}</em>
+        <p><form action="/{{inc.id}}/change_read_status/False">
+          <input type="submit" value="Mark unread?" class="mark unread" />
+        </form>
+        <br><a href="http://encore.skokielibrary.info/iii/encore/search/C__St%3A%28{{inc.title|cut:'?'}}%29%20a%3A%28{{inc.author}}%29__Orightresult__U?lang=eng&nbsp;suite=beta" target="_blank">Search in the catalog</a>
+      </div>
+    </div>
+
+  {% endfor %}
+
+  <div class="clearfix"></div>
+  <hr>
+  <h1>Books To Read</h1>
+
+  You have {{to_read_books|length}} book{% if to_read_books|length > 1 %}s{%endif%} to read.
+  {% for inc in to_read_books %}
+
+    <div class="record">
+      <a href="https://books.google.com/books?id={{inc.google_id}}" target="_blank"><img src="{{inc.image}}"></a>
+      <div class='caption'>
+        {{inc.title}}
+        <br><em>{{inc.author}}</em>
+        <p><form action="/{{inc.id}}/change_read_status/True">
+          <input type="submit" value="Mark read?" class="mark read" />
+        </form>
+      </div>
+    </div>
+
+  {% endfor %}
+
+  {% endblock %}
